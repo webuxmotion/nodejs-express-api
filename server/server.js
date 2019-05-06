@@ -33,7 +33,7 @@ app.post('/api/users/register', (req, res) => {
       userdata: doc
     });
   });
-})
+});
 
 app.listen(port, () => {
   console.log(`Server runing at ${port}`);
