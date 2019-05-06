@@ -1,0 +1,2 @@
+db.test.insert({name: "Andrii"});
+db.test.find();
