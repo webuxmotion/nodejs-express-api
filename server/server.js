@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
 // Models
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
@@ -30,6 +29,28 @@ const { admin } = require('./middleware/admin');
 // =========
 // PRODUCTS
 // =========
+
+app.get('/api/product/articles_by_id', (req, res) => {
+  var type = req.query.type; 
+  var items = req.query.id; 
+
+  if (type === "array") {
+    let ids = req.query.id.split(','); 
+
+    items = [];
+    items = ids.map(item => {
+      return mongoose.Types.ObjectId(item);
+    });
+  }
+
+  Product.
+    find({'_id': {$in:items}}).
+    populate('brand').
+    populate('wood').
+    exec((err, docs) => {
+      return res.status(200).send(docs);
+    });
+});
 
 app.post('/api/product/article', auth, admin, (req, res) => {
   const product = new Product(req.body); 
