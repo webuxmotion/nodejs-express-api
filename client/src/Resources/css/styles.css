@@ -38,6 +38,7 @@ a {
 .dialog_alert {
     padding: 51px;
     font-size: 30px;
+    background-color: white;
 }
 
 .load_more_container {
@@ -893,4 +894,9 @@ footer .business_nfo .nfo {
     background-size: contain !important;
     background-position: center center !important;
     border: 1px solid #eaeaea;
+}
+.Modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
